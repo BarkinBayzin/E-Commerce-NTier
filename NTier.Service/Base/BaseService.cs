@@ -62,7 +62,7 @@ namespace NTier.Service.Base
         /// Get take active entites
         /// </summary>
         /// <returns>Return all Entities when are active</returns>
-        public List<T> GetActives() => Context.Set<T>().Where(x => x.Status == Status.Active).ToList();
+        public virtual List<T> GetActives() => Context.Set<T>().Where(x => x.Status == Status.Active).ToList();
         /// <summary>
         /// Get all entities
         /// </summary>

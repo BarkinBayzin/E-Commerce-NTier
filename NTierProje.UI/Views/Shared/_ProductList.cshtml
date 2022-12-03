@@ -1,0 +1,55 @@
+﻿
+@model List<NTier.Model.Entities.Product>
+
+<div class="sidebar-widget outer-bottom-small wow fadeInUp">
+    <h3 class="section-title">Special Offers</h3>
+    <div class="sidebar-widget-body outer-top-xs">
+        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+            <!-- 3/3'lük 'Special OFfers' alanı için -->
+            @{ int productCounter = 0;}
+            @for (int i = 0; i < Model.Count / 3; i++)
+            {
+                <div class="item">
+                    <div class="products special-product">
+                        @for (int j = 0; j < Model.Count / 3; j++)
+                        {
+                            <div class="product">
+                                <div class="product-micro">
+                                    <div class="row product-micro-row">
+                                        <div class="col col-xs-5">
+                                            <div class="product-image">
+                                                <div class="image">
+                                                    <a href="~/Product/Detail/@Model[productCounter].Id">
+                                                        <img src="@Model[productCounter].ImagePath" alt="" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-xs-7">
+                                            <div class="product-info">
+                                                <h3 class="name">
+                                                    <a href="~/Product/Detail/@Model[productCounter].Id">
+                                                        @Model[productCounter].Name
+                                                    </a>
+                                                </h3>
+                                                <div class="rating rateit-small"></div>
+                                                <div class="product-price">
+                                                    <span class="price">@Model[productCounter].UnitPrice</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            productCounter++;
+                        }
+
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

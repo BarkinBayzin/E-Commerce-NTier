@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<NTier.Model.Entities.Product>
+
+<div class="col-lg-8">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Fotoğraf</th>
+                <th>Ad</th>
+                <th>Fiyat</th>
+                <th>Detay</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td><img style="width:60px; height:60px;" src="@item.ImagePath" /></td>
+                <td>@item.Name</td>
+                <td>@item.UnitPrice</td>
+                <td><a href="/Product/Detail/@item.Id">Detayları Göster</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

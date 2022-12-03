@@ -4,39 +4,349 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Customizable CSS -->
+    <link href="~/Content/Main.css" rel="stylesheet" />
+    <link href="~/Content/blue.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/owl.transitions.css" rel="stylesheet" />
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/rateit.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+
+    <!-- Icon/Glyphs -->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    
+    @RenderSection("scripts1", false)
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+<body class="cnt-home">
+    <!-- ========================================== HEADER =========================================== -->
+
+    <header class="header-style-1">
+        <!-- ========================================== TOP MENU =========================================== -->
+        <div class="top-bar animate-dropdown">
+            <div class="container">
+                <div class="header-top-inner">
+                    <div class="cnt-account">
+                        <ul class="list-unstyled">
+
+                            @if (string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+                            {
+                                <li><a href="~/Home/Login"><i class="icon fa fa-lock"></i>Login</a></li>
+                                <li><a href="~/Home/Register"><i class="icon fa fa-user"></i>Register</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="#"><i class="icon fa fa-user"></i>Merhaba @HttpContext.Current.User.Identity.Name</a></li>
+                                <li><a href="~/Home/Logout"><i class="icon fa fa-lock"></i>Logout</a></li>
+
+                            }
+                        </ul>
+                    </div>
+                    <!-- /.cnt-account -->
+                    <!-- /.cnt-cart -->
+
+                </div>
+                <!-- /.header-top-inner -->
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+            <!-- /.container -->
+        </div>
+        <!-- /.header-top -->
+        <!-- ======================================== TOP MENU END ========================================= -->
+
+        <div class="main-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 logo-header">
+                        <!-- =============================== LOGO  =========================== -->
+                        <div class="logo">
+                            <a href="~/Home/Index">
+                                <img src="~/Images/logo.png" style="max-width:300px; max-height:100px" alt="logo" />
+                                <!-- /.logo -->
+                                <!-- =============================== LOGO END =========================== -->
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder">
+                        <!-- /.contact-row -->
+                        <!-- =============================== SEARCH AREA =========================== -->
+                        <!-- =============================== SEARCH AREA END =========================== -->
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
+                        <!-- =============================== SHOPPING CART DROPDOWN =========================== -->
+                        @if (!string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+                        {
+                            <div class="" style="margin-top:50px;">
+                                <a href="/Member/Cart/Index">
+                                    <div class="">
+                                        <img src="~/Content/Images/cart.png" width="40px;" height="40px;" /><p class="label">Siparişi Tamamla</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                        <!-- ============================= SHOPPING CART DROPDOWN END ========================= -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.main-header-->
+        <!-- =============================== NAVBAR =========================== -->
+
+        <div class="header-nav animate-dropdown">
+            <div class="container">
+                <div class="yamm navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="nav-bg-class">
+                        <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
+                            <div class="nav-outer">
+                                <ul class="nav navbar-nav">
+                                    <li class="active dropdown yamm-fw">
+                                        <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- =============================== NAVBAR END =========================== -->
+
+
+    </header>
+    <!-- =============================== HEADER END =========================== -->
+
+    <div class="body-content outer-top-xs" id="top-banner-and-menu">
+        <div class="container">
+            <div class="row">
+                <!-- =============================== SIDEBAR =========================== -->
+                <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+                    <!-- =============================== TOP NAVİGATİON =========================== -->
+                    @{ Html.RenderAction("CategoryList", "Home", new { area = "" }); /*Eğer area null olarak belirtmezsek partial view area içerisinde çalışmayacaktır */}
+
+                    <!-- =============================== TOP NAVİGATİON END =========================== -->
+                    <!-- =============================== SPEACIAL OFFER =========================== -->
+
+                    @{ Html.RenderAction("ProductList", "Home", new { area = "" });}
+
+                    <!-- =============================== SPEACIAL OFFER END =========================== -->
+
+                </div>
+
+                <!-- =============================== CONTENT =========================== -->
+                <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+                    @RenderBody()
+                </div>
+                <!-- =============================== CONTENT END =========================== -->
+                <!-- =============================== BRANDS CAROUSEL =========================== -->
+                <!-- =============================== BRANDS CAROUSEL END =========================== -->
+
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- =============================== FOOTER =========================== -->
+
+    <footer id="footer" class="footer color-bg">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="module-heading">
+                            <h4 class="module-title">
+                                Contact Us
+                            </h4>
+                        </div>
+                        <!-- /.module-heading-->
+
+                        <div class="module-body">
+                            <ul class="toggle-footer">
+                                <li class="media">
+                                    <div class="pull-left">
+                                        <span class="icon fa-stack fa-lg">
+                                            <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>ThemesGround, 789 Main rd, Anytown, CA 12345 USA</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="pull-left">
+                                        <span class="icon fa-stack fa-lg">
+                                            <i class="fa fa-mobile fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>(216) 654 54 21</p>
+                                        <p>(216) 654 54 22</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="pull-left">
+                                        <span class="icon fa-stack fa-lg">
+                                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>bayzinbarkin@gmail.com</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.module-body-->
+                    </div>
+                    <!-- /.col-->
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="module-heading">
+                            <h4 class="module-title">
+                                Customer Service
+                            </h4>
+                        </div>
+                        <!-- /.module-heading-->
+
+                        <div class="module-body">
+                            <ul class="list-unstyled">
+                                <li class="first"><a href="#" title="Contact Us">My Account</a></li>
+                                <li><a href="#" title="About Us">Order History</a></li>
+                                <li><a href="#" title="FAQ">FAQ</a></li>
+                                <li><a href="#" title="Popular Searches">Speacials</a></li>
+                                <li class="last"><a href="#" title="Popular Searches">Speacials</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.module-body-->
+                    </div>
+                    <!-- /.col-->
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="module-heading">
+                            <h4 class="module-title">
+                                Corporation
+                            </h4>
+                        </div>
+                        <!-- /.module-heading-->
+
+                        <div class="module-body">
+                            <ul class="list-unstyled">
+                                <li class="first"><a href="#" title="Your Account">About Us</a></li>
+                                <li><a href="#" title="Information">Customer Service</a></li>
+                                <li><a href="#" title="Addresses">Company</a></li>
+                                <li><a href="#" title="Addresses">Investor Relations</a></li>
+                                <li class="last"><a href="#" title="Order History">Advanced Search</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.module-body-->
+                    </div>
+                    <!-- /.col-->
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="module-heading">
+                            <h4 class="module-title">
+                                Why Choose Us
+                            </h4>
+                        </div>
+                        <!-- /.module-heading-->
+
+                        <div class="module-body">
+                            <ul class="list-unstyled">
+                                <li class="first"><a href="#" title="About Us">Shopping Guide</a></li>
+                                <li><a href="#" title="Blog">Blog</a></li>
+                                <li><a href="#" title="Company">Company</a></li>
+                                <li><a href="#" title="Inverstor Relations">Investor Relations</a></li>
+                                <li class="last"><a href="#" title="Suppliers">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.module-body-->
+                    </div>
+                    <!-- /.col-->
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright-bar">
+            <div class="container">
+                <div class="col-xs-12 col-sm-6 no-padding social">
+                    <ul class="link">
+                        <li class="fb pull-left"><a target="_blank" rel="nofollow" href="#" title="Facebook"></a></li>
+                        <li class="tw pull-left"><a target="_blank" rel="nofollow" href="#" title="Twitter"></a></li>
+                        <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="#" title="GooglePlus"></a></li>
+                        <li class="rss pull-left"><a target="_blank" rel="nofollow" href="#" title="RSS"></a></li>
+                        <li class="pinterest pull-left"><a target="_blank" rel="nofollow" href="#" title="Pinterest"></a></li>
+                        <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="#" title="LinkedIn"></a></li>
+                        <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="#" title="YouTube"></a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-6 no-padding">
+                    <div class="clearfix payment-methods">
+                        <ul>
+                            <li>
+                                <img src="~/Images/1.png" />
+                            </li>
+                            <li>
+                                <img src="~/Images/2.png" />
+                            </li>
+                            <li>
+                                <img src="~/Images/3.png" />
+                            </li>
+                            <li>
+                                <img src="~/Images/4.png" />
+                            </li>
+                            <li>
+                                <img src="~/Images/5.png" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ============================================================= FOOTER : END============================================================= -->
+    <!-- For demo purposes – can be removed on production -->
+    <!-- For demo purposes – can be removed on production : End -->
+    <!-- JavaScripts placed at the end of the document so the pages load faster -->
+    <!--<script src="/js/jquery-1.11.1.min.js"></script>-->
+    <script src="~/content/js/jquery-1.11.1.min.js"></script>
+    <!--<script src="/js/bootstrap.min.js"></script>-->
+    <script src="~/content/js/bootstrap.min.js"></script>
+    <!--<script src="/js/bootstrap-hover-dropdown.min.js"></script>-->
+    <script src="~/content/js/bootstrap-hover-dropdown.min.js"></script>
+    <!--<script src="/js/owl.carousel.min.js"></script>-->
+    <script src="~/content/js/owl.carousel.min.js"></script>
+    <!--<script src="/js/echo.min.js"></script>-->
+    <script src="~/content/js/echo.min.js"></script>
+    <!--<script src="/js/jquery.easing-1.3.min.js"></script>-->
+    <script src="~/content/js/jquery.easing-1.3.min.js"></script>
+    <!--<script src="/js/bootstrap-slider.min.js"></script>-->
+    <script src="~/content/js/bootstrap-slider.min.js"></script>
+    <!--<script src="/js/jquery.rateit.min.js"></script>-->
+    <script src="~/content/js/jquery.rateit.min.js"></script>
+    <!--<script type="text/javascript" src="/js/lightbox.min.js"></script>-->
+    <script src="~/content/js/lightbox.min.js"></script>
+    <!--<script src="/js/bootstrap-select.min.js"></script>-->
+    <script src="~/content/js/bootstrap-select.min.js"></script>
+    <!--<script src="/js/wow.min.js"></script>-->
+    <script src="~/content/js/wow.min.js"></script>
+    <!--<script src="/js/scripts.js"></script>-->
+    <script src="~/content/js/scripts.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>

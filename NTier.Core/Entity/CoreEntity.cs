@@ -29,7 +29,7 @@ namespace NTier.Core.Entity
         public string CreatedUserName { get; set; }
         public int? CreatedBy { get; set; }
 
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public string ModifiedComputerName { get; set; }
         public string ModifiedIp { get; set; }
         public string ModifiedUserName { get; set; }

@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="login">
+    <div class="container">
+        <h3>Login</h3>
+        <div class="col-lg-6">
+            <form id="frm" onsubmit="return check_Alpha(this)">
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    <input type="text" name="UserName" value="" class="form-control" placeholder="Kullanıcı Adı.." />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" value="" class="form-control" placeholder="Şifree.." />
+                </div>
+                <input type="submit" name="name" value="Giriş Yap" class="btn btn-primary form-control" />
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        //Alfabe kontrolü regex =>
+        function check_Alpha(letters) {
+            var regex = /^[a-zA-Z]+$/;
+            if (regex.test(letters.username.value) == false) {
+                alert("Name must be in alphabets only")
+                letters.username.focus();
+                return false;
+            }
+            if (letters.username.value == " ") {
+                alert("Name Field can not be left empty");
+                letters.username.focus();
+                return false;
+            }
+            return true;
+        }
+
+        $("#frm").submit(function (e) {
+            e.preventDefault(); //Formun yenilenmesini önler.
+            $.ajax({
+                url: "http://localhost:4143/api/Auth/Login",
+                type: "POST",
+                data: $("#frm").serialize(),
+                success: function (response) {
+                    if (response.Success) {
+                        window.location.href = response.RedirectUrl;
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        });
+    </script>
+}

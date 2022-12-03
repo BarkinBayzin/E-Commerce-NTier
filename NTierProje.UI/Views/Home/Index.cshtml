@@ -1,31 +1,79 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model List<NTier.Model.Entities.Product>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<!-- ==================================== SECTION - HERO ==================================-->
+
+<div id="hero">
+    <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+        @{ int bgImageCount = 0;}
+        @foreach (var item in Model)
+        {
+            bgImageCount++;
+            <div class="item" style="width:100%; background-image: url(@item.ImagePath)"></div>
+
+            if (bgImageCount == 5) { break; }
+        }
+    </div>
 </div>
+<!-- ==================================== SECTION - HERO END  ==================================-->
+<!-- ==================================== INFO BOXES ==================================-->
+<!-- ==================================== INFO BOXES END==================================-->
+<!-- ==================================== SCROLL TABS ==================================-->
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
+    <div class="more-info-tab clearfix">
+        <h3 class="new-product-title pull-left">New Products</h3>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+    <!-- 4/4'lük ürün listelemesi için -->
+    @{ int productCounter = 0;}
+    @for (int i = 0; i < Model.Count / 4; i++)
+    {
+        <div class="tab-content outer-top-xs">
+            <div class="tab-pane in active">
+                <div class="product-slider">
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
+                        @for (int j = 0; j < Model.Count / 4; j++)
+                        {
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image">
+                                                <a href="/Product/Detail/@Model[productCounter].Id">
+                                                    <img src="@Model[productCounter].ImagePath" alt="" />
+                                                </a>
+                                            </div>
+                                            <div class="tag new"><span>new</span></div>
+                                        </div>
+
+                                        <div class="product-info text-left">
+                                            <h3 class="name">
+                                                <a href="/Product/Detail/@Model[productCounter].Id">
+                                                    @Model[productCounter].Name
+                                                </a>
+                                            </h3>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="description"></div>
+                                            <div class="product-price">
+                                                <span class="price">@Model[productCounter].UnitPrice</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            productCounter++;
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>

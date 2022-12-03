@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model NTier.Model.Entities.Product
+
+@section scripts1{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/Cart.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.item_add').on('click', function () {
+                var id = "@Model.Id";
+                $.ajax({
+                    type: "POST",
+                    dataType: "Json",
+                    url: "@Url.Action("Add","Member/Cart")/" + id,
+                    success: function (data) {
+                        $("#lblMesaj").removeAttr("style");
+                        setTimeout(function () {
+                            $("#lblMesaj").fadeOut();
+                            $("#lblMesaj").css("visibility", "hidden");
+                        }, 2000);
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<div class="single">
+    <div class="container">
+        <div class="col-md-12 single-right">
+            <div class="col-md-5 single-right-left animated wow slideInUp">
+                <div class="flexslider" style="width:300px; height:300px;">
+                    <ul class="slides">
+                        <li data-thumb="~/Content/images/si.jpg">
+                            <div class="thumb-image">
+                                <img src="@Model.ImagePath" style="width:100%; height:100%" data-imagezoom="true" class="img-responsive" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-7 single-right-left simpleCart_shelfItem animated wow slideInRight">
+                    <h3>@Model.Name</h3>
+                    <h4><span class="item_price">@Model.UnitPrice</span></h4>
+                    <div class="description">
+                        <h5><i>@Model.UnitsInStock</i></h5>
+                        <p>
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                        </p>
+                    </div>
+                    @if (!string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+                    {
+                        <div class="occasion-cart">
+                            <a class="item_add" href="javascript:voide(0)" id="@Model.Id">Add to Cart</a>
+
+                            <label id="lblMesaj" style="visibility:hidden" class="alert alert-success">Eklendi!</label>
+                        </div>
+                    }
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
