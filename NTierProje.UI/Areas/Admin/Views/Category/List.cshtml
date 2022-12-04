@@ -1,0 +1,39 @@
+﻿@model List<NTier.Model.Entities.Category>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_SharedAdminLayout.cshtml";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+           Description
+        </th>
+        <th colspan="2">Update / Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Update", new { id=item.Id}) |
+            <a href="/Admin/Category/Delete/@item.Id">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>
