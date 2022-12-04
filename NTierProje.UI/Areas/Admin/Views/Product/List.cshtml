@@ -1,0 +1,67 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<NTier.Model.Entities.Product>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_SharedAdminLayout.cshtml";
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            UnitPrice
+        </th>
+        <th>
+         UnitsInStock
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Category Name
+           
+        </th>
+        <th>
+            ImagePath
+        </th>
+        
+        <th colspan="2">Edit / Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Name           
+        </td>
+        <td>
+            @item.UnitPrice
+        </td>
+        <td>
+            @item.UnitsInStock
+        </td>
+        <td>
+            @item.Quantity
+        </td>
+        <td>
+            @item.SubCategory.Name           
+        </td>
+        <td>
+            <img src="@item.ImagePath" style="display:block;" width="30" height="30" />
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+</table>
+<div class="pagedList">
+    @Html.PagedListPager(Model, page => Url.Action("List","Product", new {page}), PagedListRenderOptions.Classic)
+</div>

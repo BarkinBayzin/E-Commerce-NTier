@@ -1,0 +1,58 @@
+﻿@model ProductUpdateVM
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_SharedAdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <form action="/Admin/Product/Edit" method="post" enctype="multipart/form-data">
+            <input style="visibility:hidden" type="text" name="Id" value="@Model.Product.Id" />
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="text" name="Name" value="@Model.Product.Name" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="UnitPrice">Price</label>
+                <input type="text" name="UnitPrice" value="@Model.Product.UnitPrice" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="UnitsInStock">Stock</label>
+                <input type="text" name="UnitsInStock" value="@Model.Product.UnitsInStock" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="Quantity">Quantity</label>
+                <input type="text" name="Quantity" value="@Model.Product.Quantity" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="SubCategoryID">Choose Category</label>
+                <select name="SubCategoryID" class="form-control">
+                    @foreach (var item in Model.SubCategories)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Image">Image</label>
+                <input type="file" name="Image" value="@Model.Product.ImagePath" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+
+        <div>
+            @Html.ActionLink("Back to List", "List")
+        </div>
+    </div>
+</div>
+

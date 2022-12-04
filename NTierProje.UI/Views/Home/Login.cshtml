@@ -43,8 +43,9 @@
 
         $("#frm").submit(function (e) {
             e.preventDefault(); //Formun yenilenmesini önler.
+            console.log($("#frm").serialize());
             $.ajax({
-                url: "http://localhost:4143/api/Auth/Login",
+                url: "https://localhost:44317/api/Auth/Login",
                 type: "POST",
                 data: $("#frm").serialize(),
                 success: function (response) {
