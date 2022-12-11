@@ -25,15 +25,17 @@ namespace NTier.AuthService.Controllers
         public HttpResponseMessage Login(Credentials model)
         {
             var url = "";
-            if (model.username == null || model.password == null)
+            if (model.UserName == null || model.password == null)
             {
                 url = "https://localhost:44368/Home/Login";
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Success = true, RedirectUrl = url });
             }
-            if(_userService.CheckCredentials(model.username, model.password))
+            
+           
+            if (_userService.CheckCredentials(model.UserName, model.password))
             {
                 AppUser user = new AppUser();
-                user = _userService.FindByUsername(model.username);
+                user = _userService.FindByUsername(model.UserName);
 
                 if (user.Role == Role.Admin || user.Role == Role.Member)
                 {

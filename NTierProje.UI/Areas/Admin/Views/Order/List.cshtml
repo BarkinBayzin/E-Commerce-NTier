@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_SharedAdminLayout.cshtml";
+}
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NTier.Model.Entities.Order>
+<div class="col-md-6 offset-md-3">    
+<table class="table table-hover">
+    <tr>
+        <th>
+            Order Id
+        </th>
+        <th>
+            Customer Name
+        </th>
+        <th>
+            Customer User Name
+        </th>
+
+        <th colspan="2">
+            Order Detail
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.AppUser.Id
+        </td>
+        <td>
+            @item.AppUser.Name
+        </td>
+        <td>
+            @item.AppUser.UserName
+        </td>
+      
+        <td>           
+            @Html.ActionLink("Details", "Details", new { id=item.Id })            
+        </td>
+    </tr>
+}
+
+</table>
+    <div class="pagedList">
+        @Html.PagedListPager(Model, page => Url.Action("List", "Orders", new { page }), PagedListRenderOptions.Classic)
+    </div>
+</div>

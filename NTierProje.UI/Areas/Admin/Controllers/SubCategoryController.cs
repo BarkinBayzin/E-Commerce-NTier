@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace NTierProje.UI.Areas.Admin.Controllers
 {
-    public class SubCategoryController : Controller
+    public class SubCategoryController : BaseController
     {
         SubCategoryService _subCategoryService;
         CategoryService _categoryService;

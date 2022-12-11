@@ -20,7 +20,7 @@ namespace NTierProje.UI.Attributes
             if (userProfilersRequired.Any(p => p.GetType().BaseType != typeof(Enum)))
                 throw new ArgumentException("User Profiles Required");
 
-            this.userProfilesRequired = userProfilersRequired.Select(p => Enum.GetName(typeof(Enum), p)).ToArray();
+            this.userProfilesRequired = userProfilersRequired.Select(p => Enum.GetName(typeof(Role), p)).ToArray();
         }
 
         public override void OnAuthorization(AuthorizationContext context)

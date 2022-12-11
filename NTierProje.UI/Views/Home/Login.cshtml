@@ -9,7 +9,7 @@
         <div class="col-lg-6">
             <form id="frm" onsubmit="return check_Alpha(this)">
                 <div class="form-group">
-                    <label for="username">User Name</label>
+                    <label for="UserName">User Name</label>
                     <input type="text" name="UserName" value="" class="form-control" placeholder="Kullanıcı Adı.." />
                 </div>
                 <div class="form-group">
@@ -38,6 +38,7 @@
                 letters.username.focus();
                 return false;
             }
+            console.log("check complete.");
             return true;
         }
 

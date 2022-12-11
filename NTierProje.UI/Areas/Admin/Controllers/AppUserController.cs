@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace NTierProje.UI.Areas.Admin.Controllers
 {
     //[CustomAuthorize(Role.Admin)]
-    public class AppUserController : Controller
+    public class AppUserController : BaseController
     {
         AppUserService _appUserService;
         public AppUserController()

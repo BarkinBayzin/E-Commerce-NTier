@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace NTierProje.UI.Areas.Admin.Controllers
 {
     //[CustomAuthorize(Role.Admin)]
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         CategoryService _categoryService;
         public CategoryController()

@@ -12,8 +12,8 @@ using System.Web.Mvc;
 
 namespace NTierProje.UI.Areas.Admin.Controllers
 {
-    [CustomAuthorize(Role.Admin)]
-    public class ProductController : Controller
+    //[CustomAuthorize(Role.Admin)]
+    public class ProductController : BaseController
     {
         ProductService _productService;
         SubCategoryService _subCategoryService;
@@ -25,6 +25,7 @@ namespace NTierProje.UI.Areas.Admin.Controllers
 
         public ActionResult List(int page = 1)
         {
+            CheckRole();
             List<Product> model = _productService.GetActives().OrderByDescending(x => x.CreateDate).ToList();
             return View(model.ToPagedList(page, 10));
         }

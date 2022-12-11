@@ -28,8 +28,13 @@ namespace NTierProje.UI.Controllers
             {
                 AppUser user = new AppUser();
                 user = _appUserService.GetById((Guid)id);
-                string cookie = user.UserName.ToString();
-                FormsAuthentication.SetAuthCookie(cookie, true);
+
+                //string cookie = user.UserName.ToString();
+                //FormsAuthentication.SetAuthCookie(cookie, true);
+
+                Session["userId"] = user.Id;
+
+                Session.Add("role", user.Role);
 
                 if (user.Role == Role.Admin) return Redirect("/Admin/Home/Index");
             }

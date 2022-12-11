@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace NTierProje.UI.Areas.Admin.Controllers
 {
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         OrderService _orderService;
         public HomeController()
@@ -19,6 +19,7 @@ namespace NTierProje.UI.Areas.Admin.Controllers
         }
         public ActionResult Index()
         {
+            CheckRole();
             //Onaylanmamış tüm siparişler admin'e gönderiliyor.
             List<Order> model = _orderService.GetDefaults(x => !x.Confirmed && x.Status == Status.Active);
 
