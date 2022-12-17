@@ -7,13 +7,13 @@ namespace NTier.Model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ConnectionStringChanged : IMigrationMetadata
+    public sealed partial class dbMatched : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ConnectionStringChanged));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(dbMatched));
         
         string IMigrationMetadata.Id
         {
-            get { return "202212030913466_ConnectionStringChanged"; }
+            get { return "202212170750095_dbMatched"; }
         }
         
         string IMigrationMetadata.Source

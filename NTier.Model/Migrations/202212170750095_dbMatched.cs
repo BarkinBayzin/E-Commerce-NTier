@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ConnectionStringChanged : DbMigration
+    public partial class dbMatched : DbMigration
     {
         public override void Up()
         {

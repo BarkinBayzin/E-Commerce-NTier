@@ -9,6 +9,10 @@ namespace NTier.Model.Entities
 {
     public class Order:CoreEntity
     {
+        public Order()
+        {
+            OrderDetails = new List<OrderDetail>();
+        }
         public bool Confirmed { get; set; }
         //Fk for AppUser
         public Guid AppUserID { get; set; }

@@ -53,7 +53,7 @@
                             eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
                         </p>
                     </div>
-                    @if (!string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+                    @if (Session["userId"] != null)
                     {
                         <div class="occasion-cart">
                             <a class="item_add" href="javascript:voide(0)" id="@Model.Id">Add to Cart</a>

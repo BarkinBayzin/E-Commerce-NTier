@@ -64,13 +64,9 @@
     <Compile Include="Map\OrderMap.cs" />
     <Compile Include="Map\ProductMap.cs" />
     <Compile Include="Map\SubCategoryMap.cs" />
-    <Compile Include="Migrations\202212030913466_ConnectionStringChanged.cs" />
-    <Compile Include="Migrations\202212030913466_ConnectionStringChanged.designer.cs">
-      <DependentUpon>202212030913466_ConnectionStringChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212110935313_ForSeedData.cs" />
-    <Compile Include="Migrations\202212110935313_ForSeedData.designer.cs">
-      <DependentUpon>202212110935313_ForSeedData.cs</DependentUpon>
+    <Compile Include="Migrations\202212170750095_dbMatched.cs" />
+    <Compile Include="Migrations\202212170750095_dbMatched.designer.cs">
+      <DependentUpon>202212170750095_dbMatched.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,11 +82,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202212030913466_ConnectionStringChanged.resx">
-      <DependentUpon>202212030913466_ConnectionStringChanged.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212110935313_ForSeedData.resx">
-      <DependentUpon>202212110935313_ForSeedData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202212170750095_dbMatched.resx">
+      <DependentUpon>202212170750095_dbMatched.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

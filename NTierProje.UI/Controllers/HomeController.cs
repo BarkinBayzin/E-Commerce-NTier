@@ -33,11 +33,35 @@ namespace NTierProje.UI.Controllers
                 //FormsAuthentication.SetAuthCookie(cookie, true);
 
                 Session["userId"] = user.Id;
+                Session["username"] = user.UserName;
 
                 Session.Add("role", user.Role);
 
                 if (user.Role == Role.Admin) return Redirect("/Admin/Home/Index");
             }
+
+            //_appUserService.Add(new AppUser
+            //{
+            //    Address = "blabla",
+            //    BirthDate = DateTime.Now,
+            //    Email = "admin@admin.com",
+            //    Name = "Barkin",
+            //    Surname = "Bayzin",
+            //    UserName = "admin",
+            //    Password = "123",
+            //    Role = Role.Admin,
+            //});
+            //_appUserService.Add(new AppUser
+            //{
+            //    Address = "blabla",
+            //    BirthDate = DateTime.Now,
+            //    Email = "Member@Member.com",
+            //    Name = "Barkin",
+            //    Surname = "Bayzin",
+            //    UserName = "member",
+            //    Password = "123",
+            //    Role = Role.Member,
+            //});
 
             var model = _productService.GetDefaults(x => x.UnitsInStock > 0 && x.Status != Status.Deleted).OrderByDescending(x => x.CreateDate).Take(16).ToList();
             return View(model);

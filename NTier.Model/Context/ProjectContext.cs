@@ -16,7 +16,7 @@ namespace NTier.Model.Context
     {
         public ProjectContext() /*:base("NTierProject")*/
         {
-            Database.Connection.ConnectionString = "Server=.\\SQLEXPRESS;DataBase=NTier;Trusted_Connection=True;";
+            Database.Connection.ConnectionString = "Server=.;DataBase=NTier;Trusted_Connection=True;";
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

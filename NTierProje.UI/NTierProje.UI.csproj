@@ -158,6 +158,12 @@
     <Compile Include="Areas\Admin\Controllers\SubCategoryController.cs" />
     <Compile Include="Areas\Admin\Models\ProductUpdateVM.cs" />
     <Compile Include="Areas\Admin\Models\SubCategoryVM.cs" />
+    <Compile Include="Areas\Member\Controllers\CartController.cs" />
+    <Compile Include="Areas\Member\Controllers\CheckOutController.cs" />
+    <Compile Include="Areas\Member\Controllers\RegisterController.cs" />
+    <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
+    <Compile Include="Areas\Member\Models\ProductCart.cs" />
+    <Compile Include="Areas\Member\Models\ProductVM.cs" />
     <Compile Include="Attributes\CustomAuthorize.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -280,6 +286,11 @@
     <Content Include="Areas\Admin\Views\AppUser\List.cshtml" />
     <Content Include="Areas\Admin\Views\Order\List.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
+    <Content Include="Areas\Member\Views\web.config" />
+    <Content Include="Areas\Member\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Member\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Member\Views\Register\Register.cshtml" />
+    <Content Include="Areas\Member\Views\Cart\Index.cshtml" />
     <None Include="Content\js\jquery-1.7-vsdoc.js" />
     <Content Include="Content\js\jquery-1.7.js" />
     <Content Include="Content\js\jquery-1.7.min.js" />
@@ -379,6 +390,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Member\Views\CheckOut\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>

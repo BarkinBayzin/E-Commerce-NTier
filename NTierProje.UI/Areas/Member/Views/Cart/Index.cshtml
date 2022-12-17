@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@model List<NTierProje.UI.Areas.Member.Models.ProductVM>
+
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Fiyatı</th>
+                <th>Stok Adet</th>
+                <th>Adet</th>
+                <th>Toplam Fiyat</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <label>Ödemeniz gereken toplam tutar : <span id="totalCount"></span> $</label>
+    <a class="btn btn-primary btn-block" href="~/Member/Checkout/Add">Siparişi Tamamla!</a>
+    <ul id="data">
+    </ul>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            setTimeout(function () {
+                $.Cart.List()
+            }, 500);
+            $.Cart = {
+                //Append işlemi sırasında ` ` işaretleri arasına kodumuzu yazarak $ ile item'ları belirtmemiz gerekmekte, yoksa Guid tipinde olan id'ler fonksiyonun tetiklenmesini engelleyecektir
+                List: function () {
+                    $.getJSON("https://localhost:44368/Member/Cart/List", function (data) {
+                        $("table tbody tr").remove();
+                        var count = Object.keys(data).length;
+                        var totalCount = 0;
+                        if (count > 0) {
+                            $.each(data, function (key, item) {
+                                $("table tbody").append(`<tr><td style='line-height:40px;'> ${item.ProductName}</td><td style='line-height:40px;'> ${item.UnitPrice}</td><td style='line-height:40px;'> ${item.UnitsInStock}</td><td style='line-height:40px;'> ${item.Quantity}</td><td style='line-height:40px;'> ${item.Quantity * item.UnitPrice}</td><td><a class='fa-solid fa-plus' onclick='$.Cart.Increase("${item.Id}")'></a> <a class='fa-solid fa-minus' onclick='$.Cart.Decrease("${item.Id}")'></a> <a class='fa-solid fa-trash' onclick='$.Cart.Remove("${item.Id}")'></a> </td></tr>`)
+                                totalCount += (item.Quantity * item.UnitPrice);
+                            });
+                        }
+                        $("#totalCount").html(totalCount);
+                    });
+                },
+                Increase: function (Id) {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "Json",
+                        url: "@Url.Action("IncreaseCart","Cart")/" + Id,
+                        success: function (data) {
+                            $.Cart.List();
+                        }
+                    });
+                },
+                Decrease:function (Id) {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "Json",
+                        url: "@Url.Action("DecreaseCart","Cart")/" + Id,
+                        success: function (data) {
+                            $.Cart.List();
+                        }
+                    });
+                },
+                Remove:function (Id) {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "Json",
+                        url: "@Url.Action("RemoveCart","Cart")/" + Id,
+                        success: function (data) {
+                            $.Cart.List();
+                        }
+                    });
+                },
+            };
+        });
+    </script>
+
+    <style type="text/css">
+        img:hover,
+        a:hover{
+            cursor: pointer !important;
+        }
+    </style>
+}
+
